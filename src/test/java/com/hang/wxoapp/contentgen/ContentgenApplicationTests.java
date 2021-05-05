@@ -7,10 +7,13 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.alibaba.fastjson.JSONObject;
+
 import com.hang.wxoapp.contentgen.core.processor.contentgen.MovieTopListGenProcessor;
 import com.hang.wxoapp.contentgen.core.processor.contentgen.MusicTopListGenProcessor;
 import com.hang.wxoapp.contentgen.core.processor.contentgen.ShowTopListGenProcessor;
 import com.hang.wxoapp.contentgen.core.processor.contentgen.TvDramaTopListGenProcessor;
+import com.hang.wxoapp.contentgen.core.service.HttpRequestCoreService;
 import com.hang.wxoapp.contentgen.core.service.WordWriteCoreService;
 import com.hang.wxoapp.contentgen.utils.FileOperationUtil;
 import org.apache.poi.util.Units;
@@ -50,6 +53,9 @@ public class ContentgenApplicationTests {
 
     @Autowired
     private WordWriteCoreService wordWriteCoreService;
+
+    @Autowired
+    private HttpRequestCoreService httpRequestCoreService;
 
     private static final String MOVIE_FILE_PATH_PREFIX = "/Users/zhuhang/Documents/公众号/图片素材/电影/";
 
@@ -198,7 +204,9 @@ public class ContentgenApplicationTests {
 
     @Test
     public void writeMovieTopListText(){
-
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("type","1");
+        System.out.println(httpRequestCoreService.get("https://chaohuabang-xcx.mxvb.cn/stars/rank/list", jsonObject));
     }
 
 }

@@ -16,6 +16,8 @@ import com.hang.wxoapp.contentgen.utils.DateUtil;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.springframework.stereotype.Service;
 
+import static com.hang.wxoapp.contentgen.utils.FileOperationUtil.isDirectoryOrCreate;
+
 /**
  * @author 意修
  * @version \$Id: WordWriteCoreServiceImpl.java, v 0.1 2021-05-03 7:03 PM 意修 Exp $$
@@ -40,7 +42,10 @@ public class WordWriteCoreServiceImpl extends BaseCoreService implements WordWri
             int index = 1;
             XWPFDocument document= new XWPFDocument();
             FileOutputStream out;
-            out = new FileOutputStream(new File(WORD_PREFIX + DateUtil.getDateString(new Date())) + CommonConstants.SLASH + MOVIE_TOP_LIST_FILE_NAME);
+            String fileName = WORD_PREFIX + DateUtil.getDateString(new Date()) + CommonConstants.SLASH;
+            isDirectoryOrCreate(fileName);
+            fileName += DateUtil.getDateString(new Date()) + MOVIE_TOP_LIST_FILE_NAME;
+            out = new FileOutputStream(new File(fileName));
             // 2 设置内容格式
             for(MovieTopListItemEntity movieTopListItemEntity : listItemEntities){
                 setMovieTopListItemIntoDocument(index, movieTopListItemEntity, document);
@@ -63,7 +68,10 @@ public class WordWriteCoreServiceImpl extends BaseCoreService implements WordWri
             int index = 1;
             XWPFDocument document= new XWPFDocument();
             FileOutputStream out;
-            out = new FileOutputStream(new File(WORD_PREFIX + DateUtil.getDateString(new Date())) + CommonConstants.SLASH + TV_DRAMA_TOP_LIST_FILE_NAME);
+            String fileName = WORD_PREFIX + DateUtil.getDateString(new Date()) + CommonConstants.SLASH;
+            isDirectoryOrCreate(fileName);
+            fileName += DateUtil.getDateString(new Date()) + TV_DRAMA_TOP_LIST_FILE_NAME;
+            out = new FileOutputStream(new File(fileName));
             // 2 设置内容格式
             for(TvDramaTopListItemEntity tvDramaTopListItemEntity : listItemEntities){
                 setTvDramaTopListItemIntoDocument(index, tvDramaTopListItemEntity, document);
@@ -86,7 +94,10 @@ public class WordWriteCoreServiceImpl extends BaseCoreService implements WordWri
             int index = 1;
             XWPFDocument document= new XWPFDocument();
             FileOutputStream out;
-            out = new FileOutputStream(new File(WORD_PREFIX + DateUtil.getDateString(new Date())) + CommonConstants.SLASH + MUSIC_TOP_LIST_FILE_NAME);
+            String fileName = WORD_PREFIX + DateUtil.getDateString(new Date()) + CommonConstants.SLASH;
+            isDirectoryOrCreate(fileName);
+            fileName += DateUtil.getDateString(new Date()) + MUSIC_TOP_LIST_FILE_NAME;
+            out = new FileOutputStream(new File(fileName));
             // 2 设置内容格式
             for(MusicTopListItemEntity musicTopListItemEntity : listItemEntities){
                 setMusicTopListItemIntoDocument(index, musicTopListItemEntity, document);
@@ -109,7 +120,10 @@ public class WordWriteCoreServiceImpl extends BaseCoreService implements WordWri
             int index = 1;
             XWPFDocument document= new XWPFDocument();
             FileOutputStream out;
-            out = new FileOutputStream(new File(WORD_PREFIX + DateUtil.getDateString(new Date())) + CommonConstants.SLASH + SHOW_TOP_LIST_FILE_NAME);
+            String fileName = WORD_PREFIX + DateUtil.getDateString(new Date()) + CommonConstants.SLASH;
+            isDirectoryOrCreate(fileName);
+            fileName += DateUtil.getDateString(new Date()) + SHOW_TOP_LIST_FILE_NAME;
+            out = new FileOutputStream(new File(fileName));
             // 2 设置内容格式
             for(ShowTopListItemEntity showTopListItemEntity : listItemEntities){
                 setShowTopListItemIntoDocument(index, showTopListItemEntity, document);
